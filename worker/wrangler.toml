@@ -1,0 +1,12 @@
+name = "iot-cofre-heric"
+main = "worker.js"
+compatibility_date = "2026-10-06"
+account_id = "45e3c82945d604e2d1de8a15d3f6e42a"
+
+[vars]
+EXIGIR_ASSINATURA = "sim"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "iot-sala"
+database_id = "47b82b99-926e-4f46-ac62-e6b47440c3a0"

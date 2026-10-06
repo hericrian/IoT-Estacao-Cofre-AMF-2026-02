@@ -1,0 +1,22 @@
+{
+  "version": 1,
+  "author": "Héric Rían dos Santos Pereira",
+  "editor": "wokwi",
+  "parts": [
+    {"type":"wokwi-esp32-devkit-v1","id":"esp","top":0,"left":0,"attrs":{}},
+    {"type":"wokwi-dht22","id":"dht","top":-40,"left":190,"attrs":{"temperature":"24","humidity":"50"}},
+    {"type":"wokwi-led","id":"led","top":120,"left":210,"attrs":{"color":"green"}},
+    {"type":"wokwi-resistor","id":"r","top":170,"left":160,"attrs":{"value":"220"}}
+  ],
+  "connections": [
+    ["esp:TX0","$serialMonitor:RX","",[]],
+    ["esp:RX0","$serialMonitor:TX","",[]],
+    ["dht:VCC","esp:3V3","red",[]],
+    ["dht:GND","esp:GND.1","black",[]],
+    ["dht:SDA","esp:D4","green",[]],
+    ["esp:D2","r:1","green",[]],
+    ["r:2","led:A","green",[]],
+    ["led:C","esp:GND.2","black",[]]
+  ],
+  "dependencies": {}
+}
