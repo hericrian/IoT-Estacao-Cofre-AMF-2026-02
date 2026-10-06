@@ -1,0 +1,15 @@
+{
+  "broker": "wss://test.mosquitto.org:8081/mqtt",
+  "topico": "sis1a/hericrian/teste-805a56db-d4a3-40c9-b003-8b579ad2de22",
+  "enviado": {
+    "teste": "Transporte MQTT real",
+    "aluno": "Héric",
+    "executadoEm": "2026-10-06T23:12:59.048Z"
+  },
+  "recebido": {
+    "teste": "Transporte MQTT real",
+    "aluno": "Héric",
+    "executadoEm": "2026-10-06T23:12:59.048Z"
+  },
+  "resultado": "PASS"
+}

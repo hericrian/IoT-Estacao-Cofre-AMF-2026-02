@@ -1,0 +1,14 @@
+✔ API key: recusa sem chave e aceita chave correta (65.3424ms)
+✔ HMAC: corpo adulterado e assinatura ausente não gravam (19.5467ms)
+✔ replay simultâneo: somente uma leitura é gravada (7.5105ms)
+✔ timestamp antigo ou futuro é recusado (3.682ms)
+✔ entrada inválida não grava: null, string, booleano, faixa, sensor e JSON (5.0279ms)
+✔ AES-GCM: abre com chave certa e recusa chave errada ou adulteração (6.4007ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 342.6504

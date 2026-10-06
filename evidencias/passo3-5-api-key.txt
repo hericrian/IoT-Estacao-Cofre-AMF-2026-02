@@ -1,0 +1,40 @@
+
+== Falso (sem nada) ==
+   esperado (camada 3 ligada): 401 - antes das camadas, isto GRAVAVA 999 no seu banco
+   obtido: HTTP 401  Recusado: sem API key ou API key errada
+
+== Sem API key ==
+   esperado (camada 3 ligada): 401
+   obtido: HTTP 401  Recusado: sem API key ou API key errada
+
+== Com API key, sem assinatura ==
+   esperado (camada 3 ligada): 401 (na camada 2 ainda passa: 200)
+   obtido: HTTP 200  OK: temp=25
+
+== Valido (API key + assinatura) ==
+   esperado (camada 3 ligada): 200
+   obtido: HTTP 200  OK: temp=25
+
+== Adulterado (assina 25.0, manda 45.0) ==
+   esperado (camada 3 ligada): 401 assinatura invalida
+   obtido: HTTP 200  OK: temp=45
+
+== Replay - 1a vez ==
+   esperado (camada 3 ligada): 200
+   obtido: HTTP 200  OK: temp=25
+
+== Replay - 2a vez (mesma requisicao) ==
+   esperado (camada 3 ligada): 401 replay
+   obtido: HTTP 200  OK: temp=25
+
+== Atrasado (ts de 5 min atras) ==
+   esperado (camada 3 ligada): 401 expirada
+   obtido: HTTP 200  OK: temp=25
+
+== Tentativas recusadas (GET /tentativas) ==
+
+motivo ip quando
+------ -- ------
+          
+
+

@@ -1,0 +1,94 @@
+Browser tab: 1363200061, Title: "Estação Cofre — Héric — IoT AMF 06/10 - Wokwi ESP32, STM32, Arduino Simulator", URL: "https://wokwi.com/projects/477173835312859137".
+0 AXWebArea Estação Cofre — Héric — IoT AMF 06/10 - Wokwi ESP32, STM32, Arduino Simulator, URL: wokwi.com/projects/477173835312859137
+	1 container
+		2 container
+			3 link wokwi.com/
+			4 button (disabled) SAVE
+			5 button
+			6 button SHARE
+			7 button Like this project
+			8 text Estação Cofre — Héric — IoT AMF 06/10
+			9 button
+			10 link Description: Docs, Value: docs.wokwi.com/?utm_source=wokwi
+			11 button toggle dark mode
+			12 button Héric Rian
+				13 image Héric Rian
+		14 container
+			15 container
+				16 button sketch.ino
+				17 button diagram.json
+				18 button libraries.txt
+				19 button Library Manager
+				20 button
+				21 container
+					22 editor (settable) Description: Editor content;Press Alt+F1 for Accessibility Options., Value:                    ",\"led\":\"" + (ledOn ? "ON" : "OFF") + "\",\"ts\":" + String(agora()) + "}";
+    String cifrado = cifrarCofre(claro);
+    if (cifrado.length() == 0 || !mqtt.publish(T_COFRE.c_str(), cifrado.c_str()))
+      Serial.println("[COFRE] falha ao cifrar ou publicar");
+    Serial.println("[COFRE] claro  : " + claro);
+    Serial.println("[COFRE] cifrado: " + cifrado);
+  }
+}
+
+					23 container
+						24 text 427 
+						25 content list
+							26 text #endif
+			27 container
+				28 button Simulation
+				29 container
+					30 button Restart the simulation
+					51 button Stop the simulation
+					52 button Pause
+					61 button WiFi: Connected to Wokwi-GUEST (Public IoT Gateway)
+				65 text 01:57.612 3%
+				33 container
+					34 image
+						35 container
+							36 text VIN GND D13 D12 D14 D27 D26 D25 D33 D32 D35 D34 VN VP EN 3V3 GND D15 D2 D4 RX2 TX2 D5 D18 D19 D21 RX0 TX0 D22 D23
+						37 text ESP32
+					38 image
+						39 text DHT22
+					40 image
+				54 container simple-tabpanel-0
+					63 container
+						64 text ets Jul 29 2019 12:21:46
+
+rst:0x1 (POWERON_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0030,len:1156
+load:0x40078000,len:11456
+ho 0 tail 12 room 4
+load:0x40080400,len:2972
+entry 0x400805dc
+[CONFIG] Envie API_KEY|CHAVE_HMAC|CHAVE_AES_HEX pelo Serial; valores nao serao impressos.
+[CONFIG] Chaves recebidas em RAM.
+[WiFi] conectando........... ok | IP=10.10.0.2 | RSSI=-76 dBm
+[NTP] sincronizando relogio..... ok (1791328469)
+[HTTPS] {"nome":"hericrian","sensor":"temp","valor":24.0,"ts":1791328469} -> -1 
+        assinatura: 887004488206e57cdf36eca0f769f5eb746bf361472ecc892e21a4c0f989e5ee
+        erro TLS: SSL - The connection indicated an EOF | HTTP: connection refused
+[MQTT] conectando em test.mosquitto.org:8883 (TLS validado)... falhou rc=-4 | TLS: UNKNOWN ERROR CODE (0030) (tento de novo em 3 s)
+[HTTPS] {"nome":"hericrian","sensor":"temp","valor":24.0,"ts":1791328617} -> -1 
+        assinatura: b4a43cb5a6b7cc47663629bbcf359098e46c084923d28a0239ea9f9d785cccf2
+        erro TLS: SSL - The connection indicated an EOF | HTTP: connection refused
+[COFRE] falha ao cifrar ou publicar
+[COFRE] claro  : {"temp":24.0,"umid":50.0,"led":"OFF","ts":1791328627}
+[COFRE] cifrado: {"iv":"LVQNru09jIq04ylC","dados":"n0DaWimXLEqazf5H4E3St9XEaLVCmAvNrXOnzpzMqdwonBCib63n/vAz3LeqL84My3Ds5TjSXN2ecTfPZhxti40vZ72q"}
+ [MQTT] conectando em test.mosquitto.org:8883 (TLS validado)...
+					56 text field (settable)
+					57 button Serial plotter
+					58 button Auto scroll
+					59 button
+					60 button Collapse
+
+The focused UI element is 22 editor (settable) Description: Editor content;Press Alt+F1 for Accessibility Options., Value:                    ",\"led\":\"" + (ledOn ? "ON" : "OFF") + "\",\"ts\":" + String(agora()) + "}";
+    String cifrado = cifrarCofre(claro);
+    if (cifrado.length() == 0 || !mqtt.publish(T_COFRE.c_str(), cifrado.c_str()))
+      Serial.println("[COFRE] falha ao cifrar ou publicar");
+    Serial.println("[COFRE] claro  : " + claro);
+    Serial.println("[COFRE] cifrado: " + cifrado);
+  }
+}

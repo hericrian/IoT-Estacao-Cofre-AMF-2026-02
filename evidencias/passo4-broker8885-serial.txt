@@ -1,0 +1,30 @@
+Browser tab: 1363200061, Title: "Estação Cofre — Héric — IoT AMF 06/10 - Wokwi ESP32, STM32, Arduino Simulator", URL: "https://wokwi.com/projects/477173835312859137".
+The following is a diff from the previous accessibility tree with ~ and + representing changed and added elements, respectively. Removed elements are summarized by ID range.
+Removed element IDs: 51-52
++				49 text 02:17.035 100%
+~					50 text ets Jul 29 2019 12:21:46
+
+rst:0x1 (POWERON_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0030,len:1156
+load:0x40078000,len:11456
+ho 0 tail 12 room 4
+load:0x40080400,len:2972
+entry 0x400805dc
+[CONFIG] Envie API_KEY|CHAVE_HMAC|CHAVE_AES_HEX pelo Serial; valores nao serao impressos.
+[CONFIG] Chaves recebidas em RAM.
+[WiFi] conectando........... ok | IP=10.10.0.2 | RSSI=-81 dBm
+[NTP] sincronizando relogio.............. ok (1791327350)
+[MQTT] conectando em test.mosquitto.org:8885 (TLS + login)... falhou rc=-4 | TLS: UNKNOWN ERROR CODE (0030) (tento de novo em 3 s)
+[MQTT] conectando em test.mosquitto.org:8885 (TLS + login)... falhou rc=5 | TLS: UNKNOWN ERROR CODE (0030) (tento de novo em 3 s)
+[MQTT] conectando em test.mosquitto.org:8885 (TLS + login)... falhou rc=5 | TLS: UNKNOWN ERROR CODE (0030) (tento de novo em 3 s)
+[MQTT] conectando em test.mosquitto.org:8885 (TLS + login)... falhou rc=5 | TLS: UNKNOWN ERROR CODE (0030) (tento de novo em 3 s)
+[MQTT] conectando em test.mosquitto.org:8885 (TLS + login)... falhou rc=5 | TLS: UNKNOWN ERROR CODE (0030) (tento de novo em 3 s)
+[MQTT] conectando em test.mosquitto.org:8885 (TLS + login)... falhou rc=5 | TLS: UNKNOWN ERROR CODE (0030) (tento de novo em 3 s)
+[MQTT] conectando em test.mosquitto.org:8885 (TLS + login)... falhou rc=-4 | TLS: UNKNOWN ERROR CODE (0030) (tento de novo em 3 s)
+[MQTT] conectando em test.mosquitto.org:8885 (TLS + login)... falhou rc=5 | TLS: UNKNOWN ERROR CODE (0030) (tento de novo em 3 s)
+[MQTT] conectando em test.mosquitto.org:8885 (TLS + login)... falhou rc=5 | TLS: UNKNOWN ERROR CODE (0030) (tento de novo em 3 s)
+
+The focused UI element is 43 text field (settable)

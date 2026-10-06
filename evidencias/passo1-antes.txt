@@ -1,0 +1,7 @@
+HTTP 200: Laboratorio antes das camadas: leitura aceita
+[
+  {
+    "valor": 999,
+    "timestamp": 1791327138144
+  }
+]

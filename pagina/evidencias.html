@@ -1,0 +1,258 @@
+<!doctype html><html lang="pt-BR"><meta charset="utf-8"><title>Evidências reais — Estação Cofre</title><style>body{background:#0f172a;color:#e2e8f0;font:16px system-ui;padding:30px;max-width:1100px;margin:auto}pre{background:#1e293b;padding:20px;white-space:pre-wrap;font-size:14px}h1{color:#86efac}</style><h1>Estação Cofre — resultados reais</h1><p>Héric Rían dos Santos Pereira · 06/10/2026 · Logs de execuções reais, sem chaves.</p><p>Worker remoto validado. A cifra do ESP32 foi verificada a partir do Serial; o fluxo completo HTTPS/MQTT do ESP32 ainda apresentou falhas de transporte. Consulte ENTREGA.md para as pendências.</p><section><h2>passo1-antes.txt</h2><pre>HTTP 200: Laboratorio antes das camadas: leitura aceita
+[
+  {
+    &quot;valor&quot;: 999,
+    &quot;timestamp&quot;: 1791327138144
+  }
+]
+</pre></section><section><h2>passo3-5-api-key.txt</h2><pre>
+== Falso (sem nada) ==
+   esperado (camada 3 ligada): 401 - antes das camadas, isto GRAVAVA 999 no seu banco
+   obtido: HTTP 401  Recusado: sem API key ou API key errada
+
+== Sem API key ==
+   esperado (camada 3 ligada): 401
+   obtido: HTTP 401  Recusado: sem API key ou API key errada
+
+== Com API key, sem assinatura ==
+   esperado (camada 3 ligada): 401 (na camada 2 ainda passa: 200)
+   obtido: HTTP 200  OK: temp=25
+
+== Valido (API key + assinatura) ==
+   esperado (camada 3 ligada): 200
+   obtido: HTTP 200  OK: temp=25
+
+== Adulterado (assina 25.0, manda 45.0) ==
+   esperado (camada 3 ligada): 401 assinatura invalida
+   obtido: HTTP 200  OK: temp=45
+
+== Replay - 1a vez ==
+   esperado (camada 3 ligada): 200
+   obtido: HTTP 200  OK: temp=25
+
+== Replay - 2a vez (mesma requisicao) ==
+   esperado (camada 3 ligada): 401 replay
+   obtido: HTTP 200  OK: temp=25
+
+== Atrasado (ts de 5 min atras) ==
+   esperado (camada 3 ligada): 401 expirada
+   obtido: HTTP 200  OK: temp=25
+
+== Tentativas recusadas (GET /tentativas) ==
+
+motivo ip quando
+------ -- ------
+          
+
+
+</pre></section><section><h2>passo6-hmac.txt</h2><pre>
+== Falso (sem nada) ==
+   esperado (camada 3 ligada): 401 - antes das camadas, isto GRAVAVA 999 no seu banco
+   obtido: HTTP 401  Recusado: sem API key ou API key errada
+
+== Sem API key ==
+   esperado (camada 3 ligada): 401
+   obtido: HTTP 401  Recusado: sem API key ou API key errada
+
+== Com API key, sem assinatura ==
+   esperado (camada 3 ligada): 401 (na camada 2 ainda passa: 200)
+   obtido: HTTP 401  Recusado: assinatura invalida (corpo alterado ou chave errada)
+
+== Valido (API key + assinatura) ==
+   esperado (camada 3 ligada): 200
+   obtido: HTTP 200  OK: temp=25
+
+== Adulterado (assina 25.0, manda 45.0) ==
+   esperado (camada 3 ligada): 401 assinatura invalida
+   obtido: HTTP 401  Recusado: assinatura invalida (corpo alterado ou chave errada)
+
+== Replay - 1a vez ==
+   esperado (camada 3 ligada): 200
+   obtido: HTTP 200  OK: temp=25
+
+== Replay - 2a vez (mesma requisicao) ==
+   esperado (camada 3 ligada): 401 replay
+   obtido: HTTP 401  Recusado: replay (assinatura ja usada)
+
+== Atrasado (ts de 5 min atras) ==
+   esperado (camada 3 ligada): 401 expirada
+   obtido: HTTP 401  Recusado: expirada (ts fora da janela de 60 s)
+
+== Tentativas recusadas (GET /tentativas) ==
+
+motivo ip quando
+------ -- ------
+          
+
+
+</pre></section><section><h2>testes-remotos.json</h2><pre>{
+  &quot;url&quot;: &quot;https://iot-cofre-heric.hericrianamf.workers.dev&quot;,
+  &quot;executadoEm&quot;: &quot;2026-10-06T23:03:43.235Z&quot;,
+  &quot;resultados&quot;: [
+    {
+      &quot;teste&quot;: &quot;Valido&quot;,
+      &quot;status&quot;: 200,
+      &quot;resposta&quot;: &quot;OK: temp=24&quot;
+    },
+    {
+      &quot;teste&quot;: &quot;Sem API key&quot;,
+      &quot;status&quot;: 401,
+      &quot;resposta&quot;: &quot;Recusado: sem API key ou API key errada&quot;
+    },
+    {
+      &quot;teste&quot;: &quot;Adulterado&quot;,
+      &quot;status&quot;: 401,
+      &quot;resposta&quot;: &quot;Recusado: assinatura invalida (corpo alterado ou chave errada)&quot;
+    },
+    {
+      &quot;teste&quot;: &quot;Replay simultaneo&quot;,
+      &quot;status&quot;: [
+        200,
+        401
+      ]
+    },
+    {
+      &quot;teste&quot;: &quot;Atrasado&quot;,
+      &quot;status&quot;: 401,
+      &quot;resposta&quot;: &quot;Recusado: expirada (ts fora da janela de 60 s)&quot;
+    },
+    {
+      &quot;teste&quot;: &quot;Futuro&quot;,
+      &quot;status&quot;: 401,
+      &quot;resposta&quot;: &quot;Recusado: expirada (ts fora da janela de 60 s)&quot;
+    },
+    {
+      &quot;teste&quot;: &quot;Valor null&quot;,
+      &quot;status&quot;: 400,
+      &quot;resposta&quot;: &quot;Recusado: valor fora da faixa&quot;
+    }
+  ],
+  &quot;tentativas&quot;: [
+    {
+      &quot;motivo&quot;: &quot;valor fora da faixa&quot;,
+      &quot;timestamp&quot;: 1791327821300
+    },
+    {
+      &quot;motivo&quot;: &quot;expirada (ts fora da janela de 60 s)&quot;,
+      &quot;timestamp&quot;: 1791327820823
+    },
+    {
+      &quot;motivo&quot;: &quot;expirada (ts fora da janela de 60 s)&quot;,
+      &quot;timestamp&quot;: 1791327820622
+    },
+    {
+      &quot;motivo&quot;: &quot;replay (assinatura ja usada)&quot;,
+      &quot;timestamp&quot;: 1791327820327
+    },
+    {
+      &quot;motivo&quot;: &quot;assinatura invalida (corpo alterado ou chave errada)&quot;,
+      &quot;timestamp&quot;: 1791327819946
+    },
+    {
+      &quot;motivo&quot;: &quot;sem API key ou API key errada&quot;,
+      &quot;timestamp&quot;: 1791327819733
+    },
+    {
+      &quot;motivo&quot;: &quot;expirada (ts fora da janela de 60 s)&quot;,
+      &quot;timestamp&quot;: 1791327256764
+    },
+    {
+      &quot;motivo&quot;: &quot;replay (assinatura ja usada)&quot;,
+      &quot;timestamp&quot;: 1791327256497
+    },
+    {
+      &quot;motivo&quot;: &quot;assinatura invalida (corpo alterado ou chave errada)&quot;,
+      &quot;timestamp&quot;: 1791327255561
+    },
+    {
+      &quot;motivo&quot;: &quot;assinatura invalida (corpo alterado ou chave errada)&quot;,
+      &quot;timestamp&quot;: 1791327254728
+    },
+    {
+      &quot;motivo&quot;: &quot;sem API key ou API key errada&quot;,
+      &quot;timestamp&quot;: 1791327254468
+    },
+    {
+      &quot;motivo&quot;: &quot;sem API key ou API key errada&quot;,
+      &quot;timestamp&quot;: 1791327253125
+    },
+    {
+      &quot;motivo&quot;: &quot;sem API key ou API key errada&quot;,
+      &quot;timestamp&quot;: 1791327219262
+    },
+    {
+      &quot;motivo&quot;: &quot;sem API key ou API key errada&quot;,
+      &quot;timestamp&quot;: 1791327218780
+    }
+  ]
+}</pre></section><section><h2>tentativas.json</h2><pre>[
+  {
+    &quot;motivo&quot;: &quot;expirada (ts fora da janela de 60 s)&quot;,
+    &quot;timestamp&quot;: 1791327256764
+  },
+  {
+    &quot;motivo&quot;: &quot;replay (assinatura ja usada)&quot;,
+    &quot;timestamp&quot;: 1791327256497
+  },
+  {
+    &quot;motivo&quot;: &quot;assinatura invalida (corpo alterado ou chave errada)&quot;,
+    &quot;timestamp&quot;: 1791327255561
+  },
+  {
+    &quot;motivo&quot;: &quot;assinatura invalida (corpo alterado ou chave errada)&quot;,
+    &quot;timestamp&quot;: 1791327254728
+  },
+  {
+    &quot;motivo&quot;: &quot;sem API key ou API key errada&quot;,
+    &quot;timestamp&quot;: 1791327254468
+  },
+  {
+    &quot;motivo&quot;: &quot;sem API key ou API key errada&quot;,
+    &quot;timestamp&quot;: 1791327253125
+  },
+  {
+    &quot;motivo&quot;: &quot;sem API key ou API key errada&quot;,
+    &quot;timestamp&quot;: 1791327219262
+  },
+  {
+    &quot;motivo&quot;: &quot;sem API key ou API key errada&quot;,
+    &quot;timestamp&quot;: 1791327218780
+  }
+]
+</pre></section><section><h2>broker8885.txt</h2><pre>TLS validado; enviando CONNECT MQTT
+CONNACK: 20020005
+</pre></section><section><h2>teste-transporte-mqtt.json</h2><pre>{
+  &quot;broker&quot;: &quot;wss://test.mosquitto.org:8081/mqtt&quot;,
+  &quot;topico&quot;: &quot;sis1a/hericrian/teste-805a56db-d4a3-40c9-b003-8b579ad2de22&quot;,
+  &quot;enviado&quot;: {
+    &quot;teste&quot;: &quot;Transporte MQTT real&quot;,
+    &quot;aluno&quot;: &quot;H&#233;ric&quot;,
+    &quot;executadoEm&quot;: &quot;2026-10-06T23:12:59.048Z&quot;
+  },
+  &quot;recebido&quot;: {
+    &quot;teste&quot;: &quot;Transporte MQTT real&quot;,
+    &quot;aluno&quot;: &quot;H&#233;ric&quot;,
+    &quot;executadoEm&quot;: &quot;2026-10-06T23:12:59.048Z&quot;
+  },
+  &quot;resultado&quot;: &quot;PASS&quot;
+}</pre></section><section><h2>cifra-real-esp32.json</h2><pre>{
+  &quot;executadoEm&quot;: &quot;2026-10-06T23:20:01.327Z&quot;,
+  &quot;origem&quot;: &quot;Ciphertext real do ESP32/DHT22, capturado no Serial do Wokwi&quot;,
+  &quot;transporteMqttDoEsp32Confirmado&quot;: false,
+  &quot;chaveCorreta&quot;: {
+    &quot;resultado&quot;: &quot;APROVADO&quot;,
+    &quot;leitura&quot;: {
+      &quot;temp&quot;: 24,
+      &quot;umid&quot;: 50,
+      &quot;led&quot;: &quot;OFF&quot;,
+      &quot;ts&quot;: 1791328627
+    }
+  },
+  &quot;chaveAlterada&quot;: &quot;RECUSADA&quot;,
+  &quot;segundaChaveIndependente&quot;: &quot;RECUSADA&quot;,
+  &quot;pacote&quot;: {
+    &quot;iv&quot;: &quot;LVQNru09jIq04ylC&quot;,
+    &quot;dados&quot;: &quot;n0DaWimXLEqazf5H4E3St9XEaLVCmAvNrXOnzpzMqdwonBCib63n/vAz3LeqL84My3Ds5TjSXN2ecTfPZhxti40vZ72q&quot;
+  }
+}
+</pre></section>

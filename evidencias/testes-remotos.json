@@ -1,0 +1,101 @@
+{
+  "url": "https://iot-cofre-heric.hericrianamf.workers.dev",
+  "executadoEm": "2026-10-06T23:03:43.235Z",
+  "resultados": [
+    {
+      "teste": "Valido",
+      "status": 200,
+      "resposta": "OK: temp=24"
+    },
+    {
+      "teste": "Sem API key",
+      "status": 401,
+      "resposta": "Recusado: sem API key ou API key errada"
+    },
+    {
+      "teste": "Adulterado",
+      "status": 401,
+      "resposta": "Recusado: assinatura invalida (corpo alterado ou chave errada)"
+    },
+    {
+      "teste": "Replay simultaneo",
+      "status": [
+        200,
+        401
+      ]
+    },
+    {
+      "teste": "Atrasado",
+      "status": 401,
+      "resposta": "Recusado: expirada (ts fora da janela de 60 s)"
+    },
+    {
+      "teste": "Futuro",
+      "status": 401,
+      "resposta": "Recusado: expirada (ts fora da janela de 60 s)"
+    },
+    {
+      "teste": "Valor null",
+      "status": 400,
+      "resposta": "Recusado: valor fora da faixa"
+    }
+  ],
+  "tentativas": [
+    {
+      "motivo": "valor fora da faixa",
+      "timestamp": 1791327821300
+    },
+    {
+      "motivo": "expirada (ts fora da janela de 60 s)",
+      "timestamp": 1791327820823
+    },
+    {
+      "motivo": "expirada (ts fora da janela de 60 s)",
+      "timestamp": 1791327820622
+    },
+    {
+      "motivo": "replay (assinatura ja usada)",
+      "timestamp": 1791327820327
+    },
+    {
+      "motivo": "assinatura invalida (corpo alterado ou chave errada)",
+      "timestamp": 1791327819946
+    },
+    {
+      "motivo": "sem API key ou API key errada",
+      "timestamp": 1791327819733
+    },
+    {
+      "motivo": "expirada (ts fora da janela de 60 s)",
+      "timestamp": 1791327256764
+    },
+    {
+      "motivo": "replay (assinatura ja usada)",
+      "timestamp": 1791327256497
+    },
+    {
+      "motivo": "assinatura invalida (corpo alterado ou chave errada)",
+      "timestamp": 1791327255561
+    },
+    {
+      "motivo": "assinatura invalida (corpo alterado ou chave errada)",
+      "timestamp": 1791327254728
+    },
+    {
+      "motivo": "sem API key ou API key errada",
+      "timestamp": 1791327254468
+    },
+    {
+      "motivo": "sem API key ou API key errada",
+      "timestamp": 1791327253125
+    },
+    {
+      "motivo": "sem API key ou API key errada",
+      "timestamp": 1791327219262
+    },
+    {
+      "motivo": "sem API key ou API key errada",
+      "timestamp": 1791327218780
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "executadoEm": "2026-10-06T23:20:01.327Z",
+  "origem": "Ciphertext real do ESP32/DHT22, capturado no Serial do Wokwi",
+  "transporteMqttDoEsp32Confirmado": false,
+  "chaveCorreta": {
+    "resultado": "APROVADO",
+    "leitura": {
+      "temp": 24,
+      "umid": 50,
+      "led": "OFF",
+      "ts": 1791328627
+    }
+  },
+  "chaveAlterada": "RECUSADA",
+  "segundaChaveIndependente": "RECUSADA",
+  "pacote": {
+    "iv": "LVQNru09jIq04ylC",
+    "dados": "n0DaWimXLEqazf5H4E3St9XEaLVCmAvNrXOnzpzMqdwonBCib63n/vAz3LeqL84My3Ds5TjSXN2ecTfPZhxti40vZ72q"
+  }
+}
